@@ -2,15 +2,12 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
-use Adx\PageModule\Asset\TinymceAsset;
 
 $this->title = 'Pages';
 $this->params['subtitle'] = 'Create';
 
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->params['subtitle'];
-
-TinymceAsset::register($this);
 
 ?>
 
