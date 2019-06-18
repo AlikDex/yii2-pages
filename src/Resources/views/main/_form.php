@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use Adx\Tinymce\Tinymce;
 use yii\widgets\ActiveForm;
 
 ?>
@@ -18,7 +19,18 @@ use yii\widgets\ActiveForm;
 
 	<?= $form->field($pageForm, 'meta_description')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($pageForm, 'content')->textarea(['rows' => 6]) ?>
+	<?= $form->field($pageForm, 'content')->widget(Tinymce::class, [
+		'options' => ['rows' => 16],
+		'clientOptions' => [
+			'plugins' => [
+				'advlist autolink lists link charmap print preview anchor',
+				'searchreplace visualblocks code fullscreen',
+				'insertdatetime media table contextmenu paste',
+				'textpattern'
+			],
+			'toolbar' => 'undo redo | styleselect | bold italic underline strikethrough | fontselect fontsizeselect forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media pageembed | removeformat',
+		]
+	]);?>
 
 	<?= $form->field($pageForm, 'template')->textInput(['maxlength' => true]) ?>
 
