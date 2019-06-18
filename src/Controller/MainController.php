@@ -1,6 +1,8 @@
 <?php
 namespace Adx\PagesModule\Controller;
 
+use Yii;
+use yii\web\Response;
 use yii\web\Controller;
 use Adx\PagesModule\Model\Page;
 use yii\base\ViewContextInterface;
@@ -31,8 +33,23 @@ class MainController extends Controller implements ViewContextInterface
     {
         $identify = (0 !== (int) $id) ? (int) $id : $slug;
         $page = $this->findByIdOrSlug($identify);
+        $response = Yii::$container->get(Response::class);
 
         $template = empty($page['template']) ? 'index' : $page['template'];
+
+        $crawlerRestrictionTypes = [];
+        if (!$page['noindex']) {
+            $crawlerRestrictionTypes[] = 'noindex';
+        }
+
+        if (!$page['nofollow']) {
+            $crawlerRestrictionTypes[] = 'nofollow';
+        }
+
+        if (!empty($crawlerRestrictionTypes)) {
+            $headers = $response->getHeaders();
+            $headers->add('X-Robots-Tag', \implode(',', $crawlerRestrictionTypes));
+        }
 
         return $this->render($template, [
             'page' => $page,
