@@ -38,11 +38,11 @@ class MainController extends Controller implements ViewContextInterface
         $template = empty($page['template']) ? 'index' : $page['template'];
 
         $crawlerRestrictionTypes = [];
-        if (!$page['noindex']) {
+        if (true === (bool) $page['noindex']) {
             $crawlerRestrictionTypes[] = 'noindex';
         }
 
-        if (!$page['nofollow']) {
+        if (true === (bool) $page['nofollow']) {
             $crawlerRestrictionTypes[] = 'nofollow';
         }
 
