@@ -43,6 +43,7 @@ use yii\widgets\ActiveForm;
 						'textpattern'
 					],
 					'toolbar' => 'undo redo | styleselect | bold italic underline strikethrough | fontselect fontsizeselect forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media pageembed | removeformat',
+					'convert_urls' => false,
 				]
 			]) ?>
 		</div>
