@@ -20,7 +20,7 @@ config:
         'class' => yii\console\controllers\MigrateController::class,
         'migrationNamespaces' => [],
         'migrationPath' => [
-            '@vendor/alikdex/yii-pages/src/Migration',
+            '@vendor/alikdex/yii2-pages/src/Migration',
         ],
     ],
 ],
@@ -29,10 +29,10 @@ or composer:
 ```
 "scripts": {
     "post-update-cmd": [
-        "yes | php yii migrate --migrationPath=@vendor/alikdex/yii-pages/src/Migration"
+        "yes | php yii migrate --migrationPath=@vendor/alikdex/yii2-pages/src/Migration"
     ],
     "post-install-cmd": [
-        "yes | php yii migrate --migrationPath=@vendor/alikdex/yii-pages/src/Migration"
+        "yes | php yii migrate --migrationPath=@vendor/alikdex/yii2-pages/src/Migration"
     ]
 }
 ```
