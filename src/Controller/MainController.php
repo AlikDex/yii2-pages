@@ -26,30 +26,17 @@ class MainController extends Controller implements ViewContextInterface
 
     /**
      * View one custom page.
-     * 
+     *
      * @return mixed
      */
     public function actionIndex($id = 0, $slug = '')
     {
         $identify = (0 !== (int) $id) ? (int) $id : $slug;
         $page = $this->findByIdOrSlug($identify);
-        $response = Yii::$container->get(Response::class);
 
         $template = empty($page['template']) ? 'index' : $page['template'];
 
-        $crawlerRestrictionTypes = [];
-        if (true === (bool) $page['noindex']) {
-            $crawlerRestrictionTypes[] = 'noindex';
-        }
-
-        if (true === (bool) $page['nofollow']) {
-            $crawlerRestrictionTypes[] = 'nofollow';
-        }
-
-        if (!empty($crawlerRestrictionTypes)) {
-            $headers = $response->getHeaders();
-            $headers->add('X-Robots-Tag', \implode(',', $crawlerRestrictionTypes));
-        }
+        $this->registerXRobotsTag($page);
 
         return $this->render($template, [
             'page' => $page,
@@ -75,7 +62,7 @@ class MainController extends Controller implements ViewContextInterface
         } else {
             $query->where(['slug' => $identify]);
         }
-        
+
         $page = $query
             ->andWhere(['enabled' => 1])
             ->one();
@@ -85,5 +72,31 @@ class MainController extends Controller implements ViewContextInterface
         }
 
         return $page;
+    }
+
+    /**
+     * Регистрирует заголовок для запрета индексации
+     * или запрета перехода по ссылкам страницы
+     *
+     * @param array $page
+     * @return void
+     */
+    protected function registerXRobotsTag(array $page)
+    {
+        $response = Yii::$container->get(Response::class);
+
+        $crawlerRestrictionTypes = [];
+        if (true === (bool) $page['noindex']) {
+            $crawlerRestrictionTypes[] = 'noindex';
+        }
+
+        if (true === (bool) $page['nofollow']) {
+            $crawlerRestrictionTypes[] = 'nofollow';
+        }
+
+        if (!empty($crawlerRestrictionTypes)) {
+            $headers = $response->getHeaders();
+            $headers->add('X-Robots-Tag', \implode(',', $crawlerRestrictionTypes));
+        }
     }
 }
