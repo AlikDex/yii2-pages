@@ -1,12 +1,12 @@
 <?php
 namespace Adx\PagesModule\Controller;
 
-use Yii;
-use yii\web\Response;
-use yii\web\Controller;
 use Adx\PagesModule\Model\Page;
+use Yii;
 use yii\base\ViewContextInterface;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * MainController
@@ -52,12 +52,12 @@ class MainController extends Controller implements ViewContextInterface
      *
      * @throws NotFoundHttpException
      */
-    public function findByIdOrSlug($identify)
+    public function findByIdOrSlug($identify): array
     {
         $query = Page::find()
             ->asArray();
 
-        if (is_integer($identify)) {
+        if (\is_integer($identify)) {
             $query->where(['page_id' => $identify]);
         } else {
             $query->where(['slug' => $identify]);
