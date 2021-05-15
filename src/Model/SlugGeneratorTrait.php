@@ -26,7 +26,7 @@ trait SlugGeneratorTrait
 
         // если слаг существует, добавляем к нему индекс, до тех пор пока не станет уникальным.
         if ($this->isAttributeChanged('slug') && $this->existsSlug($slug)) {
-            for ($index = 1; $this->existsSlug($new_slug = $slug . '-' . $index); $index++) {}
+            for ($index = 1; $this->existsSlug($new_slug = $slug . '-' . $index); $index ++) {}
 
             $slug = $new_slug;
         }

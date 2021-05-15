@@ -13,11 +13,11 @@ class PageForm extends Model
     public $meta_title;
     public $meta_description;
     public $content;
-    public $template;
+	public $template;
     public $comment;
     public $noindex;
     public $nofollow;
-    public $enabled;
+	public $enabled;
 
     /**
      * @inheritdoc
@@ -36,10 +36,10 @@ class PageForm extends Model
     /**
      * @inheritdoc
      */
-    public function formName()
-    {
-        return '';
-    }
+	public function formName()
+	{
+		return '';
+	}
 
     /**
      * Валидирует форму и возвращает результат валидации.

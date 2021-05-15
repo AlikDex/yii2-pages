@@ -1,15 +1,15 @@
 <?php
 namespace Adx\PagesModule\Admin;
 
-use Adx\PagesModule\Form\Admin\PageForm;
-use Adx\PagesModule\Model\Page;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use Adx\PagesModule\Model\Page;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use Adx\PagesModule\Form\Admin\PageForm;
 
 /**
  * MainController implements the CRUD actions for Page model.
@@ -22,15 +22,15 @@ class MainController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
+           'access' => [
+               'class' => AccessControl::class,
+               'rules' => [
+                   [
+                       'allow' => true,
+                       'roles' => ['@'],
+                   ],
+               ],
+           ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -57,7 +57,7 @@ class MainController extends Controller
 
     /**
      * Lists all Pages models.
-     *
+     * 
      * @return mixed
      */
     public function actionIndex($page = 1)
@@ -76,7 +76,7 @@ class MainController extends Controller
 
     /**
      * Displays a single Page model.
-     *
+     * 
      * @param integer $id
      * @return mixed
      */
@@ -92,7 +92,7 @@ class MainController extends Controller
     /**
      * Creates a new Page model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     *
+     * 
      * @return mixed
      */
     public function actionCreate()
@@ -103,7 +103,7 @@ class MainController extends Controller
 
         if ($pageForm->load(Yii::$app->request->post()) && $pageForm->validate()) {
             $currentDatetime = gmdate('Y-m-d H:i:s');
-
+            
             $page->setAttributes($pageForm->getAttributes());
             $page->generateSlug($pageForm->slug);
             $page->updated_at = $currentDatetime;
@@ -123,7 +123,7 @@ class MainController extends Controller
     /**
      * Updates an existing Page model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     *
+     * 
      * @param integer $id
      * @return mixed
      */
@@ -154,7 +154,7 @@ class MainController extends Controller
     /**
      * Deletes an existing Page model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
+     * 
      * @param integer $id
      * @return mixed
      */
@@ -170,7 +170,7 @@ class MainController extends Controller
     /**
      * Finds the Page model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     *
+     * 
      * @param integer $id
      * @return Page the loaded model
      * @throws NotFoundHttpException if the model cannot be found

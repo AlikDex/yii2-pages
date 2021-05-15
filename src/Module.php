@@ -3,8 +3,8 @@ namespace Adx\PagesModule;
 
 use Yii;
 use yii\base\Module as BaseModule;
-use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
+use yii\console\Application as ConsoleApplication;
 
 /**
  * This is the main module class of the pages extension.
@@ -29,7 +29,7 @@ class Module extends BaseModule
         // default templates path
         $this->setViewPath(__DIR__ . '/Resources/views');
 
-        parent::__construct($id, $parent, $config);
+        parent::__construct ($id, $parent, $config);
     }
 
     /**

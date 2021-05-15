@@ -45,7 +45,7 @@ class Page extends ActiveRecord implements SlugAwareInterface
 
     /**
      * Return page id or null, if is it new record
-     *
+     * 
      * @return int|null
      */
     public function getId()
@@ -87,7 +87,7 @@ class Page extends ActiveRecord implements SlugAwareInterface
 
     /**
      * Check is enabled.
-     *
+     * 
      * @return bool
      */
     public function isEnabled()
@@ -97,7 +97,7 @@ class Page extends ActiveRecord implements SlugAwareInterface
 
     /**
      * Set enabled/disabled state.
-     *
+     * 
      * @param bool $enabled
      */
     public function setEnabled($enabled)
